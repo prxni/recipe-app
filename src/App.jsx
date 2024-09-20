@@ -1,12 +1,17 @@
 
 import axios from "axios"
 import Item from "./components/item"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 function App() {
 
   const [arr,setArr]=useState([])
   const [index,setIndex]=useState(0)
   const [isLoading,setIsLoading]=useState(false)
+  
+  useEffect(()=>{
+    if(localStorage.dark=="true")
+      document.documentElement.classList.add("dark")
+  })
   const search=(evt)=>
   {
     evt.preventDefault()
@@ -21,6 +26,7 @@ function App() {
     
   }
   const toggleTheme=(evt)=>{
+    localStorage.dark=localStorage.dark=="true" ? false : true
     document.documentElement.classList.toggle("dark")
   }
   return (
